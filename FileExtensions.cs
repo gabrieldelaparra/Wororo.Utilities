@@ -7,29 +7,37 @@ namespace Wororo.Utilities
 {
     public static class FileExtensions
     {
+        public static string CleanFileName(this string fileName)
+        {
+            return Regex.Replace(fileName, "[^a-zA-Z0-9_.]+", string.Empty, RegexOptions.Compiled);
+        }
+
         public static void CreatePathIfNotExists(this string filepath)
         {
             var fileInfo = new FileInfo(filepath);
-            if (!fileInfo.Directory.Exists) 
+            if (!fileInfo.Directory.Exists)
                 fileInfo.Directory.Create();
         }
+
+        public static void DeleteIfExists(this string path, bool additionalCondition = true)
+        {
+            if (Directory.Exists(path) && additionalCondition) Directory.Delete(path, true);
+
+            if (File.Exists(path) && additionalCondition) File.Delete(path);
+        }
+
         public static void RestoreTemplateFileIfDoesNotExists(string assemblyFullName, string templateName,
-            string outputFilename, bool overwrite = false)
+                                                              string outputFilename, bool overwrite = false)
         {
             var f = new FileInfo(outputFilename);
-            if (f.Directory != null && !f.Directory.Exists)
-            {
-                f.Directory.Create();
-            }
+            if (f.Directory != null && !f.Directory.Exists) f.Directory.Create();
 
-            if (!File.Exists(outputFilename) || overwrite)
-            {
+            if (!File.Exists(outputFilename) || overwrite) {
                 var assemblyList = AppDomain.CurrentDomain.GetAssemblies();
 
                 var assembly = assemblyList.FirstOrDefault(x => x.FullName.Equals(assemblyFullName));
 
-                if (assembly != null)
-                {
+                if (assembly != null) {
                     assembly.GetManifestResourceNames();
 
                     using var templateStream = assembly.GetManifestResourceStream(templateName);
@@ -38,10 +46,6 @@ namespace Wororo.Utilities
                     templateStream.CopyTo(fileStream);
                 }
             }
-        }
-        public static string CleanFileName(this string fileName)
-        {
-            return Regex.Replace(fileName, "[^a-zA-Z0-9_.]+", string.Empty, RegexOptions.Compiled);
         }
     }
 }
