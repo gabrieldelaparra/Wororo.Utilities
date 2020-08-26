@@ -3,6 +3,17 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <LangVersion>8.0</LangVersion>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Description>A set of utilities for my personal projects.</Description>
+    <RepositoryUrl>https://github.com/gabrieldelaparra/Utilities</RepositoryUrl>
+    <RepositoryType>Git</RepositoryType>
+    <PackageTags>Utilities</PackageTags>
+    <Copyright>2020, Gabriel De La Parra</Copyright>
+    <Authors>Gabriel De La Parra</Authors>
+    <Company>Wororo</Company>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <AssemblyVersion>1.0.0.*</AssemblyVersion>
+    <NeutralLanguage>en</NeutralLanguage>
   </PropertyGroup>
 
   <ItemGroup>
