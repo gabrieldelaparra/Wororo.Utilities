@@ -1,5 +1,8 @@
 using System;
+using System.Runtime.InteropServices;
+
 using NUnit.Framework;
+
 using Wororo.Utilities;
 
 namespace UnitTests
@@ -120,15 +123,15 @@ namespace UnitTests
             Assert.AreEqual("helloWorld", string3.ToLetters());
         }
 
-#if !IS_LINUX
         [Test]
         public void TestToNormalized()
         {
             const string string1 = "hello World á é í ó ú è à é ö ä ü ñ";
 
-            Assert.AreEqual("hello World a e i o u e a e o a u n", string1.ToNormalized());
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                Assert.AreEqual("hello World a e i o u e a e o a u n", string1.ToNormalized());
         }
-#endif
+
         [Test]
         public void TestToSingleLineText()
         {
