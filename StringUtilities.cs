@@ -26,6 +26,19 @@ namespace Wororo.Utilities
             return string.IsNullOrWhiteSpace(value);
         }
 
+        public static string GetRegexMatchGroup(this string input, string regexPattern, int groupIndex)
+        {
+            if (string.IsNullOrWhiteSpace(input)) return string.Empty;
+            var r = new Regex(regexPattern);
+            var m = r.Match(input);
+            return m.Success ? m.Groups.Count > groupIndex ? m.Groups[groupIndex].Value : string.Empty : string.Empty;
+        }
+
+        public static string ToJoin(this IEnumerable<string> values, string separator)
+        {
+            return string.Join(separator, values);
+        }
+
         public static string Remove2PlusSpaces(this string text)
         {
             return RemoveSpacesRegex.Replace(text, string.Empty).Trim();
@@ -41,7 +54,7 @@ namespace Wororo.Utilities
             return text.Replace('\t', ' ');
         }
 
-        public static bool ToBool(this string input)
+        public static bool ParseTrueFalseStringToBool(this string input)
         {
             return !input.IsEmpty() && bool.Parse(input);
         }
@@ -101,7 +114,11 @@ namespace Wororo.Utilities
 
         public static string ToSpacedCSV(this IEnumerable<string> values)
         {
-            return string.Join(", ", values);
+            return values.ToJoin(", ");
+        }
+        public static string ToTSV(this IEnumerable<string> values)
+        {
+            return values.ToJoin("\t");
         }
 
         public static string ToTitleCase(this string lowerCaseString)

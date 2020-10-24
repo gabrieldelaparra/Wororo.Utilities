@@ -21,13 +21,22 @@ namespace Wororo.Utilities
             return Convert.ToBoolean(booleanInt);
         }
 
-        public static bool ToBool(this string booleanString)
+        public static bool IntToBool(this string booleanIntString)
         {
-            if (string.IsNullOrWhiteSpace(booleanString)) return false;
-            return int.TryParse(booleanString, out var intResult)
+            if (booleanIntString.IsEmpty()) return false;
+            return int.TryParse(booleanIntString, out var intResult)
                 ? Convert.ToBoolean(intResult)
-                : Convert.ToBoolean(booleanString);
+                : Convert.ToBoolean(booleanIntString);
         }
+
+        public static double ToThreeDecimals(this double input)
+        {
+            return Math.Truncate(input * 1000) / 1000;
+        }
+
+        public static bool IsEven(this int i) => i % 2 == 0;
+
+        public static bool IsOdd(this int i) => !i.IsEven();
 
         public static int ToBoolInt(this bool boolean)
         {

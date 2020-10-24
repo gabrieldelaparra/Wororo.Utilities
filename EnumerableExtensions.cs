@@ -25,11 +25,6 @@ namespace Wororo.Utilities
             return MoreEnumerable.DistinctBy(source, keySelector);
         }
 
-        public static bool HasMoreThanOne<T>(this IEnumerable<T> enumerable)
-        {
-            return enumerable.GetConstrainedCount().Equals(2);
-        }
-
         public static IEnumerable<T> IntersectIfAny<T>(this IEnumerable<T> source, IEnumerable<T> target)
         {
             if (source.Any() && target.Any())
@@ -37,11 +32,6 @@ namespace Wororo.Utilities
             if (source.Any())
                 return source.Distinct();
             return target.Distinct();
-        }
-
-        public static bool IsSingle<T>(this IEnumerable<T> enumerable)
-        {
-            return enumerable.GetConstrainedCount().Equals(1);
         }
 
         public static IOrderedEnumerable<string> NaturalSort(this IEnumerable<string> list)
@@ -76,9 +66,10 @@ namespace Wororo.Utilities
             return source.OrderBy(x => r.NextDouble()).Take(takeCount);
         }
 
-        private static int GetConstrainedCount<T>(this IEnumerable<T> enumerable)
-        {
-            return enumerable.Take(2).Count();
-        }
+        private static int GetConstrainedCount<T>(this IEnumerable<T> enumerable) => enumerable.Take(2).Count();
+        public static bool HasAtLeast<T>(this IEnumerable<T> enumerable, int atLeast) => enumerable.Take(atLeast).Count().Equals(atLeast);
+        public static bool IsSingle<T>(this IEnumerable<T> enumerable) => enumerable.GetConstrainedCount().Equals(1);
+        public static bool HasMoreThanOne<T>(this IEnumerable<T> enumerable) => enumerable.HasAtLeast(2);
+
     }
 }
