@@ -12,9 +12,10 @@
     <Authors>Gabriel De La Parra</Authors>
     <Company>Wororo</Company>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <AssemblyVersion>1.0.0.1</AssemblyVersion>
+    <AssemblyVersion>$(Version)</AssemblyVersion>
     <NeutralLanguage>en</NeutralLanguage>
-    <FileVersion>1.0.0.1</FileVersion>
+    <FileVersion>$(Version)</FileVersion>
+    <PackageVersion>$(InformationalVersion)</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
