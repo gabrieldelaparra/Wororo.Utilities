@@ -21,11 +21,6 @@ namespace Wororo.Utilities
         private static readonly Regex ToSentenceCaseRegex =
             new Regex(@"(^[a-z])|\.\s+(.)", RegexOptions.ExplicitCapture | RegexOptions.Compiled);
 
-        public static bool IsEmpty(this string value)
-        {
-            return string.IsNullOrWhiteSpace(value);
-        }
-
         public static string GetRegexMatchGroup(this string input, string regexPattern, int groupIndex)
         {
             if (string.IsNullOrWhiteSpace(input)) return string.Empty;
@@ -34,9 +29,9 @@ namespace Wororo.Utilities
             return m.Success ? m.Groups.Count > groupIndex ? m.Groups[groupIndex].Value : string.Empty : string.Empty;
         }
 
-        public static string ToJoin(this IEnumerable<string> values, string separator)
+        public static bool IsEmpty(this string value)
         {
-            return string.Join(separator, values);
+            return string.IsNullOrWhiteSpace(value);
         }
 
         public static string Remove2PlusSpaces(this string text)
@@ -54,11 +49,6 @@ namespace Wororo.Utilities
             return text.Replace('\t', ' ');
         }
 
-        public static bool ParseTrueFalseStringToBool(this string input)
-        {
-            return !input.IsEmpty() && bool.Parse(input);
-        }
-
         public static string ToDigitsOnly(this string input)
         {
             return ToDigitsOnlyRegex.Replace(input, string.Empty);
@@ -74,6 +64,11 @@ namespace Wororo.Utilities
         {
             var value = ToIntRegex.Replace(input, string.Empty);
             return value.IsEmpty() ? 0 : int.Parse(value);
+        }
+
+        public static string ToJoin(this IEnumerable<string> values, string separator)
+        {
+            return string.Join(separator, values);
         }
 
         public static string ToLetters(this string text)
@@ -116,15 +111,16 @@ namespace Wororo.Utilities
         {
             return values.ToJoin(", ");
         }
-        public static string ToTSV(this IEnumerable<string> values)
-        {
-            return values.ToJoin("\t");
-        }
 
         public static string ToTitleCase(this string lowerCaseString)
         {
             var textInfo = CultureInfo.CurrentCulture.TextInfo;
             return textInfo.ToTitleCase(lowerCaseString);
+        }
+
+        public static string ToTSV(this IEnumerable<string> values)
+        {
+            return values.ToJoin("\t");
         }
     }
 }

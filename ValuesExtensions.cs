@@ -16,27 +16,42 @@ namespace Wororo.Utilities
             return left.ToThreeDecimals().Equals(right.ToThreeDecimals());
         }
 
-        public static bool ToBool(this int booleanInt)
+        public static bool IsEven(this int i)
         {
-            return Convert.ToBoolean(booleanInt);
+            return i % 2 == 0;
         }
 
-        public static bool IntToBool(this string booleanIntString)
+        public static bool IsOdd(this int i)
         {
-            if (booleanIntString.IsEmpty()) return false;
-            return int.TryParse(booleanIntString, out var intResult)
-                ? Convert.ToBoolean(intResult)
-                : Convert.ToBoolean(booleanIntString);
+            return !i.IsEven();
         }
 
-        public static double ToThreeDecimals(this double input)
+        public static bool ToBool(this int input)
         {
-            return Math.Truncate(input * 1000) / 1000;
+            return Convert.ToBoolean(input);
         }
 
-        public static bool IsEven(this int i) => i % 2 == 0;
+        public static bool ToBool(this string input)
+        {
+            //No input, let us return false;
+            if (input.IsEmpty()) return false;
 
-        public static bool IsOdd(this int i) => !i.IsEven();
+            //It may be a "1" / "0" string:
+            //If not, it will be -1
+            if (input.ToNumbers() >= 0) {
+                return int.TryParse(input, out var result)
+                    ? Convert.ToBoolean(result)
+                    : Convert.ToBoolean(input);
+            }
+
+            // It may be a "TRUE" / "FALSE" string
+
+            return bool.TryParse(input, out var boolResult)
+                ? Convert.ToBoolean(boolResult)
+                : Convert.ToBoolean(input);
+            //: return false;
+            //TODO: Check the last return, maybe return false there
+        }
 
         public static int ToBoolInt(this bool boolean)
         {
@@ -64,6 +79,11 @@ namespace Wororo.Utilities
         {
             return ((object[]) ids)?.Where(x => x != null).Select(x => x.ToString())
                 .Where(x => !string.IsNullOrWhiteSpace(x)) ?? Enumerable.Empty<string>();
+        }
+
+        public static double ToThreeDecimals(this double input)
+        {
+            return Math.Truncate(input * 1000) / 1000;
         }
 
         public static List<T> ToTypeList<T>(this object array)
