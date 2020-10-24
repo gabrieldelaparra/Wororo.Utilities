@@ -49,10 +49,14 @@ namespace Wororo.Utilities
 
         public static string ToNormalized(this string text)
         {
-            return new string(text.Normalize(NormalizationForm.FormD)
-                    .Where(c => CharUnicodeInfo.GetUnicodeCategory(c) != UnicodeCategory.NonSpacingMark)
-                    .ToArray())
-                .Normalize(NormalizationForm.FormKC);
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+            var tempBytes = Encoding.GetEncoding("ISO-8859-8").GetBytes(text);
+            return Encoding.UTF8.GetString(tempBytes);
+
+            //return new string(text.Normalize(NormalizationForm.FormD)
+            //        .Where(c => CharUnicodeInfo.GetUnicodeCategory(c) != UnicodeCategory.NonSpacingMark)
+            //        .ToArray())
+            //    .Normalize(NormalizationForm.FormKC);
         }
 
         public static int ToNumbers(this string text)
