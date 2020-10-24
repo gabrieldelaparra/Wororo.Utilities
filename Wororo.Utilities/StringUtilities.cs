@@ -50,13 +50,30 @@ namespace Wororo.Utilities
         public static string ToNormalized(this string text)
         {
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-            var tempBytes = Encoding.GetEncoding("ISO-8859-8").GetBytes(text);
-            return Encoding.UTF8.GetString(tempBytes);
 
-            //return new string(text.Normalize(NormalizationForm.FormD)
+            return
+                System.Web.HttpUtility.UrlDecode(
+                    System.Web.HttpUtility.UrlEncode(
+                        text, Encoding.GetEncoding("iso-8859-7")));
+
+            //return Encoding.ASCII.GetString(Encoding.GetEncoding(1251).GetBytes(text));
+
+            ////8 bit characters 
+            //byte[] b = Encoding.GetEncoding(1251).GetBytes(text);
+
+            //// 7 bit characters
+            //string t = Encoding.ASCII.GetString(b);
+            //Regex re = new Regex("[^a-zA-Z0-9]=-_/");
+            //string c = re.Replace(t, " ");
+            //return c;
+
+            //var tempBytes = Encoding.GetEncoding("ISO-8859-8").GetBytes(text);
+            //return Encoding.UTF8.GetString(tempBytes);
+
+            //return new string(text.Normalize(NormalizationForm.FormKD)
             //        .Where(c => CharUnicodeInfo.GetUnicodeCategory(c) != UnicodeCategory.NonSpacingMark)
             //        .ToArray())
-            //    .Normalize(NormalizationForm.FormKC);
+            //    .Normalize(NormalizationForm.FormC);
         }
 
         public static int ToNumbers(this string text)
