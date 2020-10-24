@@ -17,7 +17,7 @@ jobs:
         dotnet-version: 3.1.301
    
     - name: Create NuGet Package
-      run: dotnet pack -c Release /p:Version=${{ github.event.release.tag_name }} /p:PackageReleaseNotes="See https://github.com/gabrieldelaparra/Wororo.Utilities/releases/tag/${{ github.event.release.tag_name }}"    
+      run: dotnet pack -c Release -p:Version=${{ github.event.release.tag_name }} -p:PackageReleaseNotes="See https://github.com/gabrieldelaparra/Wororo.Utilities/releases/tag/${{ github.event.release.tag_name }}"    
     
     - name: Archive NuGet Package
       uses: actions/upload-artifact@v1
