@@ -49,7 +49,10 @@ namespace Wororo.Utilities
 
         public static string ToNormalized(this string text)
         {
-            return text.FoldToASCII();
+            return new string(text.Normalize(NormalizationForm.FormD)
+                    .Where(c => CharUnicodeInfo.GetUnicodeCategory(c) != UnicodeCategory.NonSpacingMark)
+                    .ToArray())
+                .Normalize(NormalizationForm.FormC);
         }
 
         public static int ToNumbers(this string text)
