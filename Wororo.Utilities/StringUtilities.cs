@@ -52,7 +52,7 @@ namespace Wororo.Utilities
             return new string(text.Normalize(NormalizationForm.FormD)
                     .Where(c => CharUnicodeInfo.GetUnicodeCategory(c) != UnicodeCategory.NonSpacingMark)
                     .ToArray())
-                .Normalize(NormalizationForm.FormC);
+                .Normalize(NormalizationForm.FormKC);
         }
 
         public static int ToNumbers(this string text)
