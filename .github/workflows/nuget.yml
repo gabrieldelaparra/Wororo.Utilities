@@ -17,6 +17,9 @@ jobs:
       run: dotnet build -c Release -p:Version=${{ github.event.release.tag_name }}
       working-directory: ./Wororo.Utilities/
 
+    - name: Test
+      run: dotnet test
+
     - name: Create NuGet Package
       run: dotnet pack -c Release -p:PackageVersion=${{ github.event.release.tag_name }} -p:PackageReleaseNotes="See https://github.com/gabrieldelaparra/Wororo.Utilities/releases/tag/${{ github.event.release.tag_name }}"
       working-directory: ./Wororo.Utilities/
