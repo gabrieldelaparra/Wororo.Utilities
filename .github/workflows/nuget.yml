@@ -17,13 +17,13 @@ jobs:
         dotnet-version: 3.1.301
    
     - name: Create NuGet Package
-      run: dotnet pack -c Release -p:Version=${{ github.event.release.tag_name }} -p:PackageReleaseNotes="See https://github.com/gabrieldelaparra/Wororo.Utilities/releases/tag/${{ github.event.release.tag_name }}"    
+      run: dotnet pack -c Release -p:PackageVersion=1.0.0 -p:PackageReleaseNotes="See https://github.com/gabrieldelaparra/Wororo.Utilities/releases/tag/1.0.0"    
     
     - name: Archive NuGet Package
       uses: actions/upload-artifact@v1
       with:
         name: Wororo.Utilities
-        path: ./bin/Release/Wororo.Utilities.${{ github.event.release.tag_name }}.nupkg
+        path: ./bin/Release/Wororo.Utilities.1.0.0.nupkg
     
     - name: Publish Nuget Package
       run: dotnet nuget push **/*.nupkg --api-key ${{ SECRETS.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
