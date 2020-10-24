@@ -4,8 +4,8 @@ on:
     branches: 
       - master
   #release:
-   #   types: [published]
-      
+    #   types: [published]
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -15,9 +15,12 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.301
-   
+
+    - name: Build
+      run: dotnet build -c Release -p:Version=1.0.0
+
     - name: Create NuGet Package
-      run: dotnet pack -c Release -p:PackageVersion=1.0.0 -p:PackageReleaseNotes="See https://github.com/gabrieldelaparra/Wororo.Utilities/releases/tag/1.0.0"    
+      run: dotnet pack -c Release -p:PackageVersion=1.0.0 -p:PackageReleaseNotes="See https://github.com/gabrieldelaparra/Wororo.Utilities/releases/tag/1.0.0"
     
     - name: Archive NuGet Package
       uses: actions/upload-artifact@v1
