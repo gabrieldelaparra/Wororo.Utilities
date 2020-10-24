@@ -6,10 +6,11 @@ namespace Wororo.Utilities
 {
     public static class ValuesExtensions
     {
-        public static bool Equal(this double double1, double double2)
-        {
-            return Math.Abs(double1).Equals(Math.Abs(double2));
-        }
+        //TODO: I am not sure how this can be of any good
+        //public static bool Equal(this double double1, double double2)
+        //{
+        //    return Math.Abs(double1).Equals(Math.Abs(double2));
+        //}
 
         public static bool Equals3DigitPrecision(this double left, double right)
         {
@@ -58,7 +59,7 @@ namespace Wororo.Utilities
             return Convert.ToInt32(boolean);
         }
 
-        public static string ToBoolString(this bool boolean)
+        public static string ToOneOrZeroString(this bool boolean)
         {
             return boolean ? "1" : "0";
         }

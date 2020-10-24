@@ -109,6 +109,26 @@ namespace UnitTests
         }
 
         [Test]
+        public void TestToLetters()
+        {
+            const string string1 = "hello 3 World";
+            const string string2 = "hello 34 World 45";
+            const string string3 = "hello -34 World .45";
+
+            Assert.AreEqual("helloWorld", string1.ToLetters());
+            Assert.AreEqual("helloWorld", string2.ToLetters());
+            Assert.AreEqual("helloWorld", string3.ToLetters());
+        }
+
+        [Test]
+        public void TestToNormalized()
+        {
+            const string string1 = "hello World ביםףת טאיצהü ס";
+
+            Assert.AreEqual("hello World aeiou eaeoau n", string1.ToNormalized());
+        }
+
+        [Test]
         public void TestToSingleLineText()
         {
             const string string1 = "line1\nline2";
