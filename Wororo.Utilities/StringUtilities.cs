@@ -15,7 +15,7 @@ namespace Wororo.Utilities
         private static readonly Regex ToDoubleRegex = new Regex("[^0-9+-.,eE]", RegexOptions.Compiled);
         private static readonly Regex ToSingleLineRegex = new Regex(@"[\r\n]+", RegexOptions.Compiled);
         private static readonly Regex ToLettersOnlyRegex = new Regex(@"[^a-zA-Z]", RegexOptions.Compiled);
-        private static readonly Regex RemoveSymbolsRegex = new Regex("[^0-9a-zA-Z]", RegexOptions.Compiled);
+        private static readonly Regex RemoveSymbolsRegex = new Regex("[^0-9a-zA-Z\\s]", RegexOptions.Compiled);
         private static readonly Regex RemoveSpacesRegex = new Regex("[ ]{2,}", RegexOptions.Compiled);
 
         private static readonly Regex ToSentenceCaseRegex =
@@ -36,7 +36,7 @@ namespace Wororo.Utilities
 
         public static string Remove2PlusSpaces(this string text)
         {
-            return RemoveSpacesRegex.Replace(text, string.Empty).Trim();
+            return RemoveSpacesRegex.Replace(text, Space).Trim();
         }
 
         public static string RemoveSymbols(this string text)
@@ -63,12 +63,7 @@ namespace Wororo.Utilities
         public static int ToInt(this string input)
         {
             var value = ToIntRegex.Replace(input, string.Empty);
-            return value.IsEmpty() ? 0 : int.Parse(value);
-        }
-
-        public static string ToJoin(this IEnumerable<string> values, string separator)
-        {
-            return string.Join(separator, values);
+            return value.IsEmpty() ? 0 : (int)double.Parse(value);
         }
 
         public static string ToLetters(this string text)
@@ -107,20 +102,10 @@ namespace Wororo.Utilities
                 : ToSingleLineRegex.Replace(text.Replace(Environment.NewLine, Space), Space).Remove2PlusSpaces();
         }
 
-        public static string ToSpacedCSV(this IEnumerable<string> values)
-        {
-            return values.ToJoin(", ");
-        }
-
         public static string ToTitleCase(this string lowerCaseString)
         {
             var textInfo = CultureInfo.CurrentCulture.TextInfo;
             return textInfo.ToTitleCase(lowerCaseString);
-        }
-
-        public static string ToTSV(this IEnumerable<string> values)
-        {
-            return values.ToJoin("\t");
         }
     }
 }

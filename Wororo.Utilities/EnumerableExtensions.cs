@@ -18,11 +18,23 @@ namespace Wororo.Utilities
         {
             if (!list.Contains(value)) list.Add(value);
         }
-
+        public static string ToSpacedCSV(this IEnumerable<string> values)
+        {
+            return values.Join(", ");
+        }
+        public static string ToTSV(this IEnumerable<string> values)
+        {
+            return values.Join("\t");
+        }
         public static IEnumerable<TSource> DistinctBy<TSource, TKey>(this IEnumerable<TSource> source,
                                                                      Func<TSource, TKey> keySelector)
         {
             return MoreEnumerable.DistinctBy(source, keySelector);
+        }
+
+        public static string Join(this IEnumerable<string> values, string separator)
+        {
+            return string.Join(separator, values);
         }
 
         public static bool HasAtLeast<T>(this IEnumerable<T> enumerable, int atLeast)
