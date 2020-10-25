@@ -1,8 +1,6 @@
 using System;
 using System.Runtime.InteropServices;
-
 using NUnit.Framework;
-
 using Wororo.Utilities;
 
 namespace UnitTests
