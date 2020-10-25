@@ -58,7 +58,7 @@ namespace Wororo.Utilities
 
         public static bool IsSingle<T>(this IEnumerable<T> enumerable)
         {
-            return enumerable.GetConstrainedCount().Equals(1);
+            return enumerable.Take(2).Count().Equals(1);
         }
 
         public static IOrderedEnumerable<string> NaturalSort(this IEnumerable<string> list)
@@ -91,11 +91,6 @@ namespace Wororo.Utilities
         {
             var r = new Random();
             return source.OrderBy(x => r.NextDouble()).Take(takeCount);
-        }
-
-        private static int GetConstrainedCount<T>(this IEnumerable<T> enumerable)
-        {
-            return enumerable.Take(2).Count();
         }
     }
 }
