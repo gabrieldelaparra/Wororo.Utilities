@@ -2,6 +2,7 @@ name: Publish to Nuget
 on:
   release:
     types: [published]
+  workflow_dispatch:
 
 jobs:
   build:
@@ -32,4 +33,5 @@ jobs:
     
     - name: Publish Nuget Package
       run: dotnet nuget push ./Wororo.Utilities/bin/Release/Wororo.Utilities.${{ github.event.release.tag_name }}.nupkg --api-key ${{ SECRETS.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
+      run: dotnet nuget push ./Wororo.Utilities/bin/Release/Wororo.Utilities.${{ github.event.release.tag_name }}.nupkg --source https://nuget.pkg.github.com/gabrieldelaparra/Wororo.Utilities/index.json
     
