@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -10,6 +11,20 @@ namespace Wororo.Utilities
         public static string CleanFileName(this string fileName)
         {
             return Regex.Replace(fileName, "[^a-zA-Z0-9_.]+", string.Empty, RegexOptions.Compiled);
+        }
+
+        public static IEnumerable<string> ReadLines(this Stream fileStream)
+        {
+            using var streamReader = new StreamReader(fileStream);
+            while (!streamReader.EndOfStream)
+                yield return streamReader.ReadLine();
+        }
+
+        public static IEnumerable<string> ReadLines(this string filename)
+        {
+            using var fileStream = File.OpenRead(filename);
+            foreach (var line in ReadLines(fileStream))
+                yield return line;
         }
 
         public static void CreatePathIfNotExists(this string filepath)
