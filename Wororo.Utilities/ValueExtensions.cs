@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Wororo.Utilities
 {
-    public static class ValuesExtensions
+    public static class ValueExtensions
     {
         //TODO: I am not sure how this can be of any good
         //public static bool Equal(this double double1, double double2)
@@ -38,7 +38,9 @@ namespace Wororo.Utilities
             if (input.IsEmpty()) return false;
 
             //It may be a "1" / "0" string:
-            //If not, it will be -1
+            //A "-1" string will be translated (ToNumbers()) to "1"
+            //ToNumbers() != ToInt()
+            //If not a number, ToNumbers will be -1
             if (input.ToNumbers() >= 0) {
                 return int.TryParse(input, out var result)
                     ? Convert.ToBoolean(result)
@@ -46,12 +48,7 @@ namespace Wororo.Utilities
             }
 
             // It may be a "TRUE" / "FALSE" string
-
-            return bool.TryParse(input, out var boolResult)
-                ? Convert.ToBoolean(boolResult)
-                : Convert.ToBoolean(input);
-            //: return false;
-            //TODO: Check the last return, maybe return false there
+            return bool.TryParse(input, out var boolResult) && Convert.ToBoolean(boolResult);
         }
 
         public static int ToBoolInt(this bool boolean)
@@ -87,6 +84,12 @@ namespace Wororo.Utilities
             return Math.Truncate(input * 1000) / 1000;
         }
 
+        /// <summary>
+        /// This is mostly specific to the E3 data. It will use a constructor that takes and int as argument.
+        /// </summary>
+        /// <typeparam name="T">Type of E3 object class</typeparam>
+        /// <param name="array">An array of ints, but they are given as objects.</param>
+        /// <returns></returns>
         public static List<T> ToTypeList<T>(this object array)
         {
             return array is IEnumerable<int> intEnumerable

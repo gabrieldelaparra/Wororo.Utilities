@@ -1,11 +1,10 @@
 using System;
 using System.Runtime.InteropServices;
 using NUnit.Framework;
-using Wororo.Utilities;
 
-namespace UnitTests
+namespace Wororo.Utilities.UnitTests
 {
-    public class Tests
+    public class StringExtensionsUnitTest
     {
         [Test]
         public void TestIsEmpty()

@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 
 namespace Wororo.Utilities
 {
-    public static class StringUtilities
+    public static class StringExtensions
     {
         private const string Space = " ";
         private static readonly Regex ToDigitsOnlyRegex = new Regex("[\\D]", RegexOptions.Compiled);
