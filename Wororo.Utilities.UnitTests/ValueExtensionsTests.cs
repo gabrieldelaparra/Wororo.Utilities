@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using NUnit.Framework;
 using Wororo.Utilities;
@@ -103,5 +104,81 @@ namespace Wororo.Utilities.UnitTests
             Assert.AreEqual("1", bTrue.ToOneOrZeroString());
             Assert.AreEqual("0", bFalse.ToOneOrZeroString());
         }
+
+        [Test]
+        public void TestIntObjectArrayToIntEnumerable()
+        {
+            var expected  = new List<int> { 1, 2, 3, 4 };
+
+            var input1 = new object[]{null, 1, 0, 2, 3, 4};
+            var input2 = (object)(new object[] { null, 1, 0, 2, 3, 4 });
+            var input3 = (object)(new object[] { null });
+
+            var actual1 = input1.ToIntEnumerable();
+            var actual2 = input2.ToIntEnumerable();
+            var actual3 = input3.ToIntEnumerable();
+
+            Assert.AreEqual(expected.Count, actual1.Count());
+            Assert.IsFalse(expected.Except(actual1).Any());
+
+            Assert.AreEqual(expected.Count, actual2.Count());
+            Assert.IsFalse(expected.Except(actual2).Any());
+
+            Assert.IsNotNull(actual3);
+            Assert.IsFalse(actual3.Any());
+        }
+
+        [Test]
+        public void TestIntObjectArrayToDoubleEnumerable()
+        {
+            var expected1 = new List<double> { 1, 0, 2, 3, 4 };
+            var expected2 = new List<double> { 1.2, -0.4};
+
+            var input1 = new object[] { null, 1, 0, 2, 3, 4 };
+            var input2 = (object)(new object[] { null, 1, 0, 2, 3, 4 });
+            var input3 = (object)(new object[] { null });
+            var input4 = new object[] { null, 1.2, -0.4 };
+
+            var actual1 = input1.ToDoubleEnumerable();
+            var actual2 = input2.ToDoubleEnumerable();
+            var actual3 = input3.ToDoubleEnumerable();
+            var actual4 = input4.ToDoubleEnumerable();
+
+            Assert.AreEqual(expected1.Count, actual1.Count());
+            Assert.IsFalse(expected1.Except(actual1).Any());
+
+            Assert.AreEqual(expected1.Count, actual2.Count());
+            Assert.IsFalse(expected1.Except(actual2).Any());
+
+            Assert.IsNotNull(actual3);
+            Assert.IsFalse(actual3.Any());
+
+            Assert.AreEqual(expected2.Count, actual4.Count());
+            Assert.IsFalse(expected2.Except(actual4).Any());
+        }
+
+        [Test]
+        public void TestIntObjectArrayToStringEnumerable()
+        {
+            var expected = new List<string> { "1", "2", "3", "4" };
+
+            var input1 = new object[] { null, "1", "2", "3", "4" };
+            var input2 = (object)(new object[] { null, "1", "2", "3", "4" });
+            var input3 = (object)(new object[] { null });
+
+            var actual1 = input1.ToStringEnumerable();
+            var actual2 = input2.ToStringEnumerable();
+            var actual3 = input3.ToStringEnumerable();
+
+            Assert.AreEqual(expected.Count, actual1.Count());
+            Assert.IsFalse(expected.Except(actual1).Any());
+
+            Assert.AreEqual(expected.Count, actual2.Count());
+            Assert.IsFalse(expected.Except(actual2).Any());
+
+            Assert.IsNotNull(actual3);
+            Assert.IsFalse(actual3.Any());
+        }
     }
 }
+

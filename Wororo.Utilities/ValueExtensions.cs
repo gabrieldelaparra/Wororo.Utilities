@@ -63,7 +63,7 @@ namespace Wororo.Utilities
 
         public static IEnumerable<double> ToDoubleEnumerable(this object array)
         {
-            return ((object[]) array).Where(x => x != null).Select(x => (double) x);
+            return ((object[]) array).Where(x => x != null).Select(x => Convert.ToDouble(x));
         }
 
         //TODO: Do I have to filter the 0 values? Sometimes, sometimes not (X, Y, Z for example not, but they are doubles. There could be a case though).
