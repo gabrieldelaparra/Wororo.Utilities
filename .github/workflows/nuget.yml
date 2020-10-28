@@ -12,9 +12,6 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.301
-        source-url: https://nuget.pkg.github.com/gabrieldelaparra/index.json
-      env:
-          NUGET_AUTH_TOKEN: ${{secrets.NUGET_GITHUB}}
 
     - name: Build
       run: dotnet build -c Release -p:Version=${{ github.event.release.tag_name }}
@@ -36,5 +33,6 @@ jobs:
     - name: Publish Nuget Package
       run: |
         dotnet nuget push ./Wororo.Utilities/bin/Release/Wororo.Utilities.${{ github.event.release.tag_name }}.nupkg --api-key ${{ SECRETS.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
-        dotnet nuget push ./Wororo.Utilities/bin/Release/Wororo.Utilities.${{ github.event.release.tag_name }}.nupkg --skip-duplicate --no-symbols true
+        dotnet nuget add source https://nuget.pkg.github.com/gabrieldelaparra/index.json --name github --username gabrieldelaparra --password ${{ SECRETS.NUGET_GITHUB }} --store-password-in-clear-text
+        dotnet nuget push ./Wororo.Utilities/bin/Release/Wororo.Utilities.${{ github.event.release.tag_name }}.nupkg --source github --skip-duplicate --no-symbols true
     
