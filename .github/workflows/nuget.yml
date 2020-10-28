@@ -31,8 +31,5 @@ jobs:
         path: ./Wororo.Utilities/bin/Release/Wororo.Utilities.${{ github.event.release.tag_name }}.nupkg
     
     - name: Publish Nuget Package
-      run: |
-        dotnet nuget push ./Wororo.Utilities/bin/Release/Wororo.Utilities.${{ github.event.release.tag_name }}.nupkg --api-key ${{ SECRETS.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
-        dotnet nuget add source https://nuget.pkg.github.com/gabrieldelaparra/index.json --name github --username gabrieldelaparra --password ${{ SECRETS.NUGET_GITHUB }} --store-password-in-clear-text
-        dotnet nuget push ./Wororo.Utilities/bin/Release/Wororo.Utilities.${{ github.event.release.tag_name }}.nupkg --source github --skip-duplicate --no-symbols true
+      run: dotnet nuget push ./Wororo.Utilities/bin/Release/Wororo.Utilities.${{ github.event.release.tag_name }}.nupkg --api-key ${{ SECRETS.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
     
