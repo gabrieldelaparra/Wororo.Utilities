@@ -7,18 +7,16 @@ namespace Wororo.Utilities
 {
     public static class XmlSerialization
     {
-        public static T DeserializeXml<T>(string inputXmlFilename)
-        {
+        public static T DeserializeXml<T>(string inputXmlFilename) {
             if (!File.Exists(inputXmlFilename))
                 return default;
             using var stream = new FileStream(inputXmlFilename, FileMode.Open, FileAccess.Read);
             if (stream.Length <= 0) return default;
             var s = new XmlSerializer(typeof(T));
-            return (T) s.Deserialize(stream);
+            return (T)s.Deserialize(stream);
         }
 
-        public static void SerializeXml(this object objectToSerialize, string outputXmlFilename)
-        {
+        public static void SerializeXml(this object objectToSerialize, string outputXmlFilename) {
             outputXmlFilename.CreatePathIfNotExists();
 
             var xmlWriterSettings = new XmlWriterSettings {

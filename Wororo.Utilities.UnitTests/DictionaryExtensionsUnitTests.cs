@@ -7,8 +7,7 @@ namespace Wororo.Utilities.UnitTests
     public class DictionaryExtensionsUnitTests
     {
         [Test]
-        public void TestAddSafeDifferentTypes()
-        {
+        public void TestAddSafeDifferentTypes() {
             var dictionary = new Dictionary<int, List<string>>();
 
             dictionary.AddSafe(1, "1");
@@ -22,8 +21,7 @@ namespace Wororo.Utilities.UnitTests
         }
 
         [Test]
-        public void TestAddSafeRangeDifferentTypes()
-        {
+        public void TestAddSafeRangeDifferentTypes() {
             var dictionary = new Dictionary<int, List<string>>();
 
             dictionary.AddSafe(1, new List<string> { "1" });
@@ -38,8 +36,7 @@ namespace Wororo.Utilities.UnitTests
         }
 
         [Test]
-        public void TestAddSafeRangeSameType()
-        {
+        public void TestAddSafeRangeSameType() {
             var dictionary = new Dictionary<int, List<int>>();
 
             dictionary.AddSafe(1, new List<int> { 1 });
@@ -54,8 +51,7 @@ namespace Wororo.Utilities.UnitTests
         }
 
         [Test]
-        public void TestAddSafeSameType()
-        {
+        public void TestAddSafeSameType() {
             var dictionary = new Dictionary<int, List<int>>();
 
             dictionary.AddSafe(1, 1);
@@ -69,8 +65,7 @@ namespace Wororo.Utilities.UnitTests
         }
 
         [Test]
-        public void TestInvertDictionaryDifferentTypes()
-        {
+        public void TestInvertDictionaryDifferentTypes() {
             var dictionary = new Dictionary<int, List<string>>();
             dictionary.AddSafe(1, new List<string> { "1", "2", "3" });
             Assert.AreEqual(1, dictionary.Count);
@@ -86,8 +81,7 @@ namespace Wororo.Utilities.UnitTests
         }
 
         [Test]
-        public void TestInvertDictionarySameType()
-        {
+        public void TestInvertDictionarySameType() {
             var dictionary = new Dictionary<int, List<int>>();
             dictionary.AddSafe(1, new List<int> { 1, 2, 3 });
             Assert.AreEqual(1, dictionary.Count);
@@ -103,8 +97,7 @@ namespace Wororo.Utilities.UnitTests
         }
 
         [Test]
-        public void TestToArrayDictionary()
-        {
+        public void TestToArrayDictionary() {
             var dictionary = new Dictionary<int, List<int>>();
             dictionary.AddSafe(1, new List<int> { 1, 2, 3 });
             Assert.AreEqual(1, dictionary.Count);

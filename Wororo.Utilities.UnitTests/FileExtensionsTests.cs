@@ -7,6 +7,19 @@ namespace Wororo.Utilities.UnitTests
     public class FileExtensionsTests
     {
         [Test]
+        public void TestCleanFileName() {
+            Assert.AreEqual("Single1.CFG", "Single1.CFG".CleanFileName());
+            Assert.AreEqual("Single1.CFG", "Sin?gle1.CFG".CleanFileName());
+            Assert.AreEqual("Single1.CFG", ":Single1.CFG".CleanFileName());
+            Assert.AreEqual("Single1.CFG", "/Single1.CFG".CleanFileName());
+            Assert.AreEqual("Single1.CFG", "Sin\\gle1.CFG".CleanFileName());
+            Assert.AreEqual("Single1.CFG", "Sin*gle1.CFG".CleanFileName());
+            Assert.AreEqual("Single1.CFG", "Sin<gle1.CFG".CleanFileName());
+            Assert.AreEqual("Single1.CFG", "|Sin<*gle1.CFG".CleanFileName());
+            Assert.AreEqual("Single1.CFG", "|Single1.CFG".CleanFileName());
+        }
+
+        [Test]
         public void TestGetOrCreateDirectory() {
             const string dirPath = "TestGetOrCreate/";
             var filePath = $"{dirPath}file.ext";
@@ -25,22 +38,7 @@ namespace Wororo.Utilities.UnitTests
         }
 
         [Test]
-        public void TestCleanFileName()
-        {
-            Assert.AreEqual("Single1.CFG", "Single1.CFG".CleanFileName());
-            Assert.AreEqual("Single1.CFG", "Sin?gle1.CFG".CleanFileName());
-            Assert.AreEqual("Single1.CFG", ":Single1.CFG".CleanFileName());
-            Assert.AreEqual("Single1.CFG", "/Single1.CFG".CleanFileName());
-            Assert.AreEqual("Single1.CFG", "Sin\\gle1.CFG".CleanFileName());
-            Assert.AreEqual("Single1.CFG", "Sin*gle1.CFG".CleanFileName());
-            Assert.AreEqual("Single1.CFG", "Sin<gle1.CFG".CleanFileName());
-            Assert.AreEqual("Single1.CFG", "|Sin<*gle1.CFG".CleanFileName());
-            Assert.AreEqual("Single1.CFG", "|Single1.CFG".CleanFileName());
-        }
-
-        [Test]
-        public void TestReadLines()
-        {
+        public void TestReadLines() {
             const string filename = "Resources/ReadFileTenLines.nt";
 
             Assert.True(File.Exists(filename));
