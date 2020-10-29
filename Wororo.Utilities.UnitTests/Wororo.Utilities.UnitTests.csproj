@@ -16,4 +16,10 @@
     <ProjectReference Include="..\Wororo.Utilities\Wororo.Utilities.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Resources\ReadFileTenLines.nt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

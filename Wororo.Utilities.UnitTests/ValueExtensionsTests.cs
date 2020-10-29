@@ -26,6 +26,30 @@ namespace Wororo.Utilities.UnitTests
         }
 
         [Test]
+        public void TestToThreeDecimalsLarger()
+        {
+            const double dec = 1.23456789;
+            const double expected = 1.234;
+            Assert.AreEqual(expected, dec.ToThreeDecimals());
+        }
+
+        [Test]
+        public void TestToThreeDecimalsShorter()
+        {
+            const double dec = 1.2;
+            const double expected = 1.200;
+            Assert.AreEqual(expected, dec.ToThreeDecimals());
+        }
+
+        [Test]
+        public void TestToThreeDecimalsZero()
+        {
+            const double dec = 0.0;
+            const double expected = 0.000;
+            Assert.AreEqual(expected, dec.ToThreeDecimals());
+        }
+
+        [Test]
         public void TestIsEvenIsOdd()
         {
             const int i1 = 0;
@@ -178,6 +202,86 @@ namespace Wororo.Utilities.UnitTests
 
             Assert.IsNotNull(actual3);
             Assert.IsFalse(actual3.Any());
+        }
+
+        [Test]
+        public void TestToDoubleMix()
+        {
+            const string sample = "a1a1";
+            const double expected = 11;
+            Assert.AreEqual(expected, sample.ToDouble());
+        }
+
+        [Test]
+        public void TestToDoubleNegativeExponential()
+        {
+            const string sample = "1234E-05";
+            const double expected = 1234E-05;
+            Assert.AreEqual(expected, sample.ToDouble());
+        }
+
+        [Test]
+        public void TestToDoubleNegativeNumbers()
+        {
+            const string sample = "-1234";
+            const double expected = -1234;
+            Assert.AreEqual(expected, sample.ToDouble());
+        }
+
+        [Test]
+        public void TestToDoubleOnlyLetters()
+        {
+            const string sample = "abcs";
+            const double expected = 0;
+            Assert.AreEqual(expected, sample.ToDouble());
+        }
+
+        [Test]
+        public void TestToDoubleOnlyNumbers()
+        {
+            const string sample = "1234";
+            const double expected = 1234;
+            Assert.AreEqual(expected, sample.ToDouble());
+        }
+
+        [Test]
+        public void TestToDoublePositiveExponential()
+        {
+            const string sample = "1234E05";
+            const double expected = 1234E05;
+            Assert.AreEqual(expected, sample.ToDouble());
+        }
+
+        [Test]
+        public void TestToIntMix()
+        {
+            const string sample = "a1a1";
+            const int expected = 11;
+            Assert.AreEqual(expected, sample.ToInt());
+        }
+
+        [Test]
+        public void TestToIntNegativeNumbers()
+        {
+            const string sample = "-1234";
+            const int expected = -1234;
+            Assert.AreEqual(expected, sample.ToInt());
+        }
+
+        [Test]
+        public void TestToIntOnlyLetters()
+        {
+            const string sample = "abcs";
+            const int expected = 0;
+            Assert.AreEqual(expected, sample.ToInt());
+        }
+
+        [Test]
+        public void TestToIntOnlyNumbers()
+        {
+            const string sample = "1234";
+            const int expected = 1234;
+            Assert.AreEqual(expected, sample.ToInt());
         }
     }
 }
