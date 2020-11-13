@@ -6,8 +6,7 @@ namespace Wororo.Utilities
 {
     public static class JsonSerialization
     {
-        public static T DeserializeJson<T>(string inputJsonFilename)
-        {
+        public static T DeserializeJson<T>(string inputJsonFilename) {
             if (inputJsonFilename.IsEmpty())
                 return default;
             if (!File.Exists(inputJsonFilename))
@@ -16,8 +15,7 @@ namespace Wororo.Utilities
             return JsonConvert.DeserializeObject<T>(text);
         }
 
-        public static void SerializeJson(this object objectToSerialize, string outputJsonFilename)
-        {
+        public static void SerializeJson(this object objectToSerialize, string outputJsonFilename) {
             if (outputJsonFilename.IsEmpty())
                 return;
 
