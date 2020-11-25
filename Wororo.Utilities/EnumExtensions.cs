@@ -16,5 +16,14 @@ namespace Wororo.Utilities
             var intValue = Array.IndexOf(values, value);
             return values[++intValue % length];
         }
+
+        public static TEnum ToEnum<TEnum>(this string value) where TEnum : struct
+        {
+            var defaultValue = (TEnum)Enum.GetValues(typeof(TEnum)).GetValue(0);
+            if (value.IsEmpty())
+                return defaultValue;
+
+            return Enum.TryParse<TEnum>(value, ignoreCase:true, out TEnum result) ? result : defaultValue;
+        }
     }
 }
