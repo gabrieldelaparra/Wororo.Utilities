@@ -1,4 +1,5 @@
 ﻿using System.IO;
+
 using Newtonsoft.Json;
 
 namespace Wororo.Utilities
@@ -20,7 +21,11 @@ namespace Wororo.Utilities
 
             outputJsonFilename.CreatePathIfNotExists();
             var serializer = new JsonSerializer
-                    { NullValueHandling = NullValueHandling.Ignore, Formatting = Formatting.Indented };
+            {
+                NullValueHandling = NullValueHandling.Ignore,
+                Formatting = Formatting.Indented,
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+            };
 
             using var sw = new StreamWriter(outputJsonFilename);
             using JsonWriter writer = new JsonTextWriter(sw);
