@@ -35,6 +35,10 @@ namespace Wororo.Utilities
         public static string RemoveSymbols(this string text) =>
                 RemoveSymbolsRegex.Replace(text, string.Empty).Remove2PlusSpaces();
 
+        public static bool Contains(this string source, string toCheck, StringComparison comp)
+        {
+            return source?.IndexOf(toCheck, comp) >= 0;
+        }
         public static string TabToSpaces(this string text) => text.Replace('\t', ' ');
         public static string ToDigitsOnly(this string input) => ToDigitsOnlyRegex.Replace(input, string.Empty);
 
