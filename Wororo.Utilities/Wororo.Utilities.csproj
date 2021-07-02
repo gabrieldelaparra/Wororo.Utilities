@@ -5,10 +5,10 @@
     <LangVersion>8.0</LangVersion>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Description>A set of utilities for my personal projects.</Description>
-    <RepositoryUrl>https://github.com/gabrieldelaparra/Utilities</RepositoryUrl>
+    <RepositoryUrl>https://github.com/gabrieldelaparra/Wororo.Utilities</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
     <PackageTags>Utilities</PackageTags>
-    <Copyright>2020, Gabriel De La Parra</Copyright>
+    <Copyright>2021, Gabriel De La Parra</Copyright>
     <Authors>Gabriel De La Parra</Authors>
     <Company>Wororo</Company>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>

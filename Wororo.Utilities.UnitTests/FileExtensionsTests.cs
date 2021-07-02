@@ -20,6 +20,20 @@ namespace Wororo.Utilities.UnitTests
         }
 
         [Test]
+        public void TestCleanFileNameInvalidChars()
+        {
+            Assert.AreEqual("Single1.CFG", "Single1.CFG".CleanFileNameInvalidChars());
+            Assert.AreEqual("Single1.CFG", "Sin?gle1.CFG".CleanFileNameInvalidChars());
+            Assert.AreEqual("Single1.CFG", ":Single1.CFG".CleanFileNameInvalidChars());
+            Assert.AreEqual("Single1.CFG", "/Single1.CFG".CleanFileNameInvalidChars());
+            Assert.AreEqual("Single1.CFG", "Sin\\gle1.CFG".CleanFileNameInvalidChars());
+            Assert.AreEqual("Single1.CFG", "Sin*gle1.CFG".CleanFileNameInvalidChars());
+            Assert.AreEqual("Single1.CFG", "Sin<gle1.CFG".CleanFileNameInvalidChars());
+            Assert.AreEqual("Single1.CFG", "|Sin<*gle1.CFG".CleanFileNameInvalidChars());
+            Assert.AreEqual("Single1.CFG", "|Single1.CFG".CleanFileNameInvalidChars());
+        }
+
+        [Test]
         public void TestGetOrCreateDirectory() {
             const string dirPath = "TestGetOrCreate/";
             var filePath = $"{dirPath}file.ext";

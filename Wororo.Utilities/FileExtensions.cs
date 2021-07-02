@@ -9,6 +9,8 @@ namespace Wororo.Utilities
 {
     public static class FileExtensions
     {
+        //private static readonly Regex CleanNameRegex = new Regex("[^a-zA-Z0-9_.]+", RegexOptions.Compiled);
+        private static readonly Regex CleanNameAndSpacesRegex = new Regex("[^a-zA-Z0-9_.\\- ]+", RegexOptions.Compiled);
         public static void AppendSafe(string filename, string line)
         {
             AppendSafe(filename, new[] {line});
@@ -41,9 +43,16 @@ namespace Wororo.Utilities
             }
         }
 
+        public static string CleanFileNameInvalidChars(this string fileName)
+        {
+            var invalidChars = Regex.Escape(new string(Path.GetInvalidFileNameChars()));
+            var invalidRegStr = string.Format(@"([{0}]*\.+$)|([{0}]+)", invalidChars);
+            return Regex.Replace(fileName, invalidRegStr, string.Empty);
+        }
+
         public static string CleanFileName(this string fileName)
         {
-            return Regex.Replace(fileName, "[^a-zA-Z0-9_.]+", string.Empty, RegexOptions.Compiled);
+            return CleanNameAndSpacesRegex.Replace(fileName, string.Empty);
         }
 
         public static void CreatePathIfNotExists(this string filepath)
