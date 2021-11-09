@@ -52,6 +52,10 @@ namespace Wororo.Utilities
             return value.IsEmpty() ? 0 : (int)double.Parse(value);
         }
 
+        public static int ToInt(this double value) => (int)value;
+        public static bool AnyIsLetter(this string value) => value.Any(char.IsLetter);
+        public static bool AnyIsNumber(this string value) => value.Any(char.IsNumber);
+
         public static string ToLetters(this string text) => ToLettersOnlyRegex.Replace(text, string.Empty);
 
         public static string ToNormalized(this string text) {
