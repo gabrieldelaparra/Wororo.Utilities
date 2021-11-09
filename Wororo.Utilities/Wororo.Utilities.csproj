@@ -16,7 +16,7 @@
     <NeutralLanguage>en</NeutralLanguage>
     <FileVersion>1.2.1.5</FileVersion>
     <PackageVersion>$(InformationalVersion)</PackageVersion>
-    <Version>1.2.1.5</Version>
+    <Version>1.2.1.6</Version>
   </PropertyGroup>
 
   <ItemGroup>
