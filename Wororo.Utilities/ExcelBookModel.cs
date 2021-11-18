@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using MiniExcelLibs;
@@ -15,25 +16,38 @@ namespace Wororo.Utilities
 
         public IList<ExcelSheetModel> Sheets = new List<ExcelSheetModel>();
 
-        public IDictionary<string, object> SheetsDictionary
+        public IDictionary<string, object> GetSheetsDictionary(bool addNewSheetWithWorkSheetColumn = false)
         {
-            get
+            var dictionary = new Dictionary<string, object>();
+            foreach (var sheet in Sheets)
             {
-                var dictionary = new Dictionary<string, object>();
+                dictionary.Add(sheet.SheetName, sheet.ToDictionary());
+            }
+
+            if (addNewSheetWithWorkSheetColumn)
+            {
+                var allRowsDictionary = new List<IDictionary<string, object>>();
                 foreach (var sheet in Sheets)
                 {
-                    dictionary.Add(sheet.SheetName, sheet.ToDictionary());
+                    var rows = sheet.ToDictionary();
+                    var newRows = rows.Select(x=>new Dictionary<string, object>(x)).ToArray();
+                    foreach (var row in newRows)
+                    {
+                        row.Add("WorkSheet", sheet.SheetName);
+                    }
+                    allRowsDictionary.AddRange(newRows);
                 }
-                return dictionary;
+                dictionary.Add("All", allRowsDictionary);
             }
+            return dictionary;
         }
 
-        public void Save()
+        public void Save(bool saveAll = false)
         {
             _outputFilename.CreatePathIfNotExists();
             _outputFilename.DeleteIfExists();
 
-            MiniExcel.SaveAs(_outputFilename, SheetsDictionary);
+            MiniExcel.SaveAs(_outputFilename, GetSheetsDictionary(saveAll));
         }
 
         public void SaveAsTSV(bool naturalSortBefore = false)

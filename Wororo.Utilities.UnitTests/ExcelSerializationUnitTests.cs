@@ -71,13 +71,13 @@ namespace Wororo.Utilities.UnitTests
             sheet1.AddRow(new[] { "1", "2", "3", "4" });
             excelBook.Sheets.Add(sheet1);
 
-            var sheet2 = new ExcelSheetModel("Sheet2", new[] { "Z", "B", "C", "D" });
+            var sheet2 = new ExcelSheetModel("Sheet2", new[] { "A", "B", "C", "D" });
             sheet2.AddRow(new[] { "5", "6", "7", "8" });
             sheet2.AddRow(new[] { "1", "2", "3", "4" });
             sheet2.AddRow(new[] { "5", "6", "7", "8" });
             excelBook.Sheets.Add(sheet2);
 
-            excelBook.Save();
+            excelBook.Save(true);
             excelBook.SaveAsTSV();
         }
     }

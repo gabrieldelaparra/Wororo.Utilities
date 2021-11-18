@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Runtime;
 
 namespace Wororo.Utilities
 {
@@ -36,7 +37,5 @@ namespace Wororo.Utilities
         {
             return Rows.ToArray();
         }
-
-
     }
 }
