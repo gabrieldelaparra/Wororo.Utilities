@@ -21,7 +21,8 @@ namespace Wororo.Utilities
 
         private static readonly Regex ToSingleLineRegex = new Regex(@"[\r\n]+", RegexOptions.Compiled);
 
-        public static string GetRegexMatchGroup(this string input, string regexPattern, int groupIndex) {
+        public static string GetRegexMatchGroup(this string input, string regexPattern, int groupIndex)
+        {
             if (string.IsNullOrWhiteSpace(input)) return string.Empty;
             var r = new Regex(regexPattern);
             var m = r.Match(input);
@@ -42,12 +43,14 @@ namespace Wororo.Utilities
         public static string TabToSpaces(this string text) => text.Replace('\t', ' ');
         public static string ToDigitsOnly(this string input) => ToDigitsOnlyRegex.Replace(input, string.Empty);
 
-        public static double ToDouble(this string input) {
+        public static double ToDouble(this string input)
+        {
             var value = ToDoubleRegex.Replace(input, string.Empty);
             return value.IsEmpty() ? 0 : double.Parse(value);
         }
 
-        public static int ToInt(this string input) {
+        public static int ToInt(this string input)
+        {
             var value = ToIntRegex.Replace(input, string.Empty);
             return value.IsEmpty() ? 0 : (int)double.Parse(value);
         }
@@ -58,14 +61,16 @@ namespace Wororo.Utilities
 
         public static string ToLetters(this string text) => ToLettersOnlyRegex.Replace(text, string.Empty);
 
-        public static string ToNormalized(this string text) {
+        public static string ToNormalized(this string text)
+        {
             return new string(text.Normalize(NormalizationForm.FormD)
                             .Where(c => CharUnicodeInfo.GetUnicodeCategory(c) != UnicodeCategory.NonSpacingMark)
                             .ToArray())
                     .Normalize(NormalizationForm.FormC);
         }
 
-        public static int ToNumbers(this string text) {
+        public static int ToNumbers(this string text)
+        {
             var tryInt = -1;
             if (text.IsEmpty()) return tryInt;
 
@@ -84,5 +89,12 @@ namespace Wororo.Utilities
 
         public static string ToTitleCase(this string lowerCaseString) =>
                 CultureInfo.CurrentCulture.TextInfo.ToTitleCase(lowerCaseString);
+
+        public static string ToFormatLiteral(this string input, bool addQuote = false)
+        {
+            return input.IsEmpty() 
+                ? string.Empty 
+                : Microsoft.CodeAnalysis.CSharp.SymbolDisplay.FormatLiteral(input, addQuote);
+        }
     }
 }
