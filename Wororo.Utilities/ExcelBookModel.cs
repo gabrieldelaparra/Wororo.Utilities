@@ -30,7 +30,7 @@ namespace Wororo.Utilities
                 foreach (var sheet in Sheets)
                 {
                     var rows = sheet.ToDictionary();
-                    var newRows = rows.Select(x=>new Dictionary<string, object>(x)).ToArray();
+                    var newRows = rows.Select(x => new Dictionary<string, object>(x)).ToArray();
                     foreach (var row in newRows)
                     {
                         row.Add("WorkSheet", sheet.SheetName);
@@ -58,7 +58,7 @@ namespace Wororo.Utilities
                 var rows = new List<string>();
                 foreach (var row in sheet.Rows)
                 {
-                    var values = row.Select(x => x.Value.ToString().ToSingleLineText()).ToTSV();
+                    var values = row.Select(x => x.Value?.ToString()?.ToSingleLineText() ?? string.Empty).ToTSV();
                     rows.Add(values);
                 }
 
