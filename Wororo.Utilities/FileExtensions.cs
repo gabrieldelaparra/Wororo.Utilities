@@ -13,7 +13,7 @@ namespace Wororo.Utilities
         private static readonly Regex CleanNameAndSpacesRegex = new Regex("[^a-zA-Z0-9_.\\- ]+", RegexOptions.Compiled);
         public static void AppendSafe(string filename, string line)
         {
-            AppendSafe(filename, new[] {line});
+            AppendSafe(filename, new[] { line });
         }
 
         public static void AppendSafe(string filename, IEnumerable<string> lines)
@@ -82,6 +82,11 @@ namespace Wororo.Utilities
             foreach (var line in ReadLines(fileStream))
                 yield return line;
         }
+
+        //public static string GetFullPathWithoutExtension(this string path)
+        //{
+        //    return Path.Combine(Path.GetDirectoryName(path), Path.GetFileNameWithoutExtension(path));
+        //}
 
         public static void RestoreTemplateFileIfDoesNotExists(string assemblyFullName, string templateName,
             string outputFilename, bool overwrite = false)
