@@ -1,22 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using MiniExcelLibs;
 
 namespace Wororo.Utilities
 {
-    public class ExcelBookModel
+    public class ExportBook
     {
         private readonly string _outputFilename;
-        public ExcelBookModel(string outputFilename)
+        public ExportBook(string outputFilename)
         {
             _outputFilename = outputFilename;
         }
 
-        public IList<ExcelSheetModel> Sheets = new List<ExcelSheetModel>();
+        public IList<ExportSheet> Sheets = new List<ExportSheet>();
 
-        public IDictionary<string, object> GetSheetsDictionary(bool addNewSheetWithWorkSheetColumn = false)
+        public IDictionary<string, object> GetSheetsDictionary(bool createAllSummarySheet = false)
         {
             var dictionary = new Dictionary<string, object>();
             foreach (var sheet in Sheets)
@@ -24,7 +23,7 @@ namespace Wororo.Utilities
                 dictionary.Add(sheet.SheetName, sheet.ToDictionary());
             }
 
-            if (addNewSheetWithWorkSheetColumn)
+            if (createAllSummarySheet)
             {
                 var allRowsDictionary = new List<IDictionary<string, object>>();
                 foreach (var sheet in Sheets)
@@ -42,15 +41,15 @@ namespace Wororo.Utilities
             return dictionary;
         }
 
-        public void Save(bool saveAll = false)
+        public void ExportToExcel(bool createAllSummarySheet = false)
         {
             _outputFilename.CreatePathIfNotExists();
             _outputFilename.DeleteIfExists();
 
-            MiniExcel.SaveAs(_outputFilename, GetSheetsDictionary(saveAll));
+            MiniExcel.SaveAs(_outputFilename, GetSheetsDictionary(createAllSummarySheet));
         }
 
-        public void SaveAsTSV(bool naturalSortBefore = false)
+        public void ExportToTSV(bool naturalSortBefore = false)
         {
             foreach (var sheet in Sheets)
             {

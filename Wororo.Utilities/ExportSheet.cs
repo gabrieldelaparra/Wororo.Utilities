@@ -4,9 +4,9 @@ using System.Runtime;
 
 namespace Wororo.Utilities
 {
-    public class ExcelSheetModel
+    public class ExportSheet
     {
-        public ExcelSheetModel(string sheetName, IEnumerable<string> headers)
+        public ExportSheet(string sheetName, IEnumerable<string> headers)
         {
             SheetName = sheetName;
             Headers = headers.ToArray();
