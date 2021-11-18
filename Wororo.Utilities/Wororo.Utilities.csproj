@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -12,11 +12,11 @@
     <Authors>Gabriel De La Parra</Authors>
     <Company>Wororo</Company>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <AssemblyVersion>1.2.1.7</AssemblyVersion>
+    <AssemblyVersion>1.2.1.8</AssemblyVersion>
     <NeutralLanguage>en</NeutralLanguage>
-    <FileVersion>1.2.1.7</FileVersion>
+    <FileVersion>1.2.1.8</FileVersion>
     <PackageVersion>$(InformationalVersion)</PackageVersion>
-    <Version>1.2.1.7</Version>
+    <Version>1.2.1.8</Version>
   </PropertyGroup>
 
   <ItemGroup>
