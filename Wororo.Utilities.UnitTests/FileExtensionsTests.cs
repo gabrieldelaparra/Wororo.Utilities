@@ -20,6 +20,7 @@ namespace Wororo.Utilities.UnitTests
         }
 
         [Test]
+        [Platform(Exclude = "Linux,Unix,MacOsX")]
         public void TestCleanFileNameInvalidChars()
         {
             Assert.AreEqual("Single1.CFG", "Single1.CFG".CleanFileNameInvalidChars());

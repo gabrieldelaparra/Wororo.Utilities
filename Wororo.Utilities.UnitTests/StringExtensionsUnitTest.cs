@@ -99,6 +99,12 @@ namespace Wororo.Utilities.UnitTests
             Assert.AreEqual(3, string1.ToInt());
             Assert.AreEqual(3445, string2.ToInt());
             Assert.AreEqual(-34, string3.ToInt());
+
+            const double double1 = -34.45;
+            const double double2 = 34.45;
+
+            Assert.AreEqual(-34, double1.ToInt());
+            Assert.AreEqual(34, double2.ToInt());
         }
 
         [Test]
@@ -110,6 +116,30 @@ namespace Wororo.Utilities.UnitTests
             Assert.AreEqual("helloWorld", string1.ToLetters());
             Assert.AreEqual("helloWorld", string2.ToLetters());
             Assert.AreEqual("helloWorld", string3.ToLetters());
+        }
+
+        [Test]
+        public void TestAnyIsLetters()
+        {
+            const string string1 = "hello 3 World";
+            const string string2 = "hello World";
+            const string string3 = "-34.45";
+
+            Assert.True(string1.AnyIsLetter());
+            Assert.True(string2.AnyIsLetter());
+            Assert.False(string3.AnyIsLetter());
+        }
+
+        [Test]
+        public void TestAnyIsNumber()
+        {
+            const string string1 = "hello 3 World";
+            const string string2 = "hello World";
+            const string string3 = "-34.45";
+
+            Assert.True(string1.AnyIsNumber());
+            Assert.False(string2.AnyIsNumber());
+            Assert.True(string3.AnyIsNumber());
         }
 
         [Test]
