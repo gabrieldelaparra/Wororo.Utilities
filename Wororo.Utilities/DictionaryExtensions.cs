@@ -6,8 +6,8 @@ namespace Wororo.Utilities
     public static class DictionaryExtensions
     {
         public static void AddSafe<T1, T2>(this Dictionary<T1, List<T2>> dictionary, T1 key, T2 value) {
-            if (dictionary.ContainsKey(key))
-                dictionary[key].AddSafe(value);
+            if (dictionary.TryGetValue(key, out var list))
+                list.AddSafe(value);
             else
                 dictionary.Add(key, new List<T2> { value });
         }
@@ -15,28 +15,28 @@ namespace Wororo.Utilities
         public static void AddSafe<T1, T2>(this Dictionary<T1, List<T2>> dictionary, T1 key, IEnumerable<T2> values) {
             if (!values.Any()) return;
 
-            if (dictionary.ContainsKey(key))
-                dictionary[key] = dictionary[key].Union(values).ToList();
+            if (dictionary.TryGetValue(key, out var list))
+                dictionary[key] = list.Union(values).ToList();
             else
                 dictionary.Add(key, values.Distinct().ToList());
         }
 
-        public static void AddSafe<T1, T2>(this IDictionary<T1, HashSet<T2>> dictionary, T1 key,
-                IEnumerable<T2> values) {
-            if (!values.Any())
-                return;
+        public static void AddSafe<T1, T2>(this IDictionary<T1, HashSet<T2>> dictionary, T1 key, IEnumerable<T2> values) {
+            if (!values.Any()) return;
 
-            if (!dictionary.ContainsKey(key))
+            if (dictionary.TryGetValue(key, out var hashSet))
+                foreach (var value in values)
+                    hashSet.Add(value);
+            else
                 dictionary.Add(key, new HashSet<T2>());
-
-            foreach (var value in values) dictionary[key].Add(value);
         }
 
         public static IDictionary<T2, List<T1>> InvertDictionary<T1, T2>(this IDictionary<T1, List<T2>> dictionary) {
             var invertedDictionary = new Dictionary<T2, List<T1>>();
 
             foreach (var type in dictionary) {
-                foreach (var property in type.Value) invertedDictionary.AddSafe(property, type.Key);
+                foreach (var property in type.Value) 
+                    invertedDictionary.AddSafe(property, type.Key);
             }
 
             invertedDictionary.TrimExcessDeep();
@@ -47,7 +47,8 @@ namespace Wororo.Utilities
             var invertedDictionary = new Dictionary<T2, List<T1>>();
 
             foreach (var type in dictionary) {
-                foreach (var property in type.Value) invertedDictionary.AddSafe(property, type.Key);
+                foreach (var property in type.Value) 
+                    invertedDictionary.AddSafe(property, type.Key);
             }
 
             return invertedDictionary.ToArrayDictionary();
