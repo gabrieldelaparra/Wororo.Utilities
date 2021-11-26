@@ -64,7 +64,7 @@ namespace Wororo.Utilities
                 if (naturalSortBefore)
                     rows = rows.NaturalSort().ToList();
                 rows.Insert(0, header);
-                File.WriteAllLines($"{Path.GetDirectoryName(_outputFilename)}{sheet.SheetName.CleanFileName().Replace(" ", "")}.tsv", rows);
+                File.WriteAllLines($"{Path.GetDirectoryName(_outputFilename)}\\{sheet.SheetName.CleanFileName().Replace(" ", "")}.tsv", rows);
             }
         }
     }
