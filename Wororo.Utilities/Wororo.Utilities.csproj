@@ -24,7 +24,7 @@
     <PackageReference Include="MiniExcel" Version="0.19.1" />
     <PackageReference Include="morelinq" Version="3.3.2" />
     <PackageReference Include="NaturalSort.Extension" Version="3.0.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
   </ItemGroup>
 
 </Project>
