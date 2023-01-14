@@ -7,7 +7,8 @@ namespace Wororo.Utilities
 {
     public static class XmlSerialization
     {
-        public static T DeserializeXml<T>(string inputXmlFilename) {
+        public static T DeserializeXml<T>(string inputXmlFilename)
+        {
             if (!File.Exists(inputXmlFilename))
                 return default;
             using var stream = new FileStream(inputXmlFilename, FileMode.Open, FileAccess.Read);
@@ -16,13 +17,16 @@ namespace Wororo.Utilities
             return (T)s.Deserialize(stream);
         }
 
-        public static void SerializeXml(this object objectToSerialize, string outputXmlFilename) {
+        public static void SerializeXml(this object objectToSerialize, string outputXmlFilename, bool serializeEmptyElements = false)
+        {
             outputXmlFilename.CreatePathIfNotExists();
 
-            var xmlWriterSettings = new XmlWriterSettings {
+            var xmlWriterSettings = new XmlWriterSettings
+            {
                 Indent = true,
                 OmitXmlDeclaration = false,
-                Encoding = Encoding.UTF8
+                Encoding = Encoding.UTF8,
+                OmitXmlDeclaration = serializeEmptyElements
             };
 
             using var stream = new FileStream(outputXmlFilename, FileMode.Create, FileAccess.Write);
@@ -31,4 +35,5 @@ namespace Wororo.Utilities
             serializer.Serialize(xmlWriter, objectToSerialize);
         }
     }
+
 }

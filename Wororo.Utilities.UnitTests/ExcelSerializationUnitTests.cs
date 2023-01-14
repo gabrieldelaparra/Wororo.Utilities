@@ -9,7 +9,7 @@ namespace Wororo.Utilities.UnitTests
         [Test]
         public void TestStringEnumerableWithHeaderToDictionary()
         {
-            var input = new string[]
+            var input = new[]
             {
                 "A,B,C,D",
                 "1,2,3,4",
@@ -17,14 +17,14 @@ namespace Wororo.Utilities.UnitTests
                 "1,2,3,4"
             };
 
-            var expected = new List<Dictionary<string, object>>()
+            var expected = new List<Dictionary<string, object>>
             {
-                new Dictionary<string, object>() {{"A", "1"},{"B","2"},{"C","3"},{"D","4"}},
-                new Dictionary<string, object>() {{"A", "5"},{"B","6"},{"C","7"},{"D","8"}},
-                new Dictionary<string, object>() {{"A", "1"},{"B","2"},{"C","3"},{"D","4"}},
+                new Dictionary<string, object> { { "A", "1" }, { "B", "2" }, { "C", "3" }, { "D", "4" } },
+                new Dictionary<string, object> { { "A", "5" }, { "B", "6" }, { "C", "7" }, { "D", "8" } },
+                new Dictionary<string, object> { { "A", "1" }, { "B", "2" }, { "C", "3" }, { "D", "4" } }
             };
 
-            var actual = ExcelSerialization.ToTableDictionary(input, ',').ToList();
+            var actual = ExcelSerialization.ToTableDictionary(input).ToList();
 
             Assert.AreEqual(expected.Count, actual.Count());
             Assert.AreEqual(expected.Count(x => x.ContainsKey("A")), actual.Count(x => x.ContainsKey("A")));
@@ -33,7 +33,7 @@ namespace Wororo.Utilities.UnitTests
             Assert.AreEqual(expected.Count(x => x.ContainsKey("D")), actual.Count(x => x.ContainsKey("D")));
 
 
-            for (int i = 0; i < actual.Count(); i++)
+            for (var i = 0; i < actual.Count(); i++)
             {
                 Assert.AreEqual(expected[i].Keys, actual[i].Keys);
                 Assert.AreEqual(expected[i].Values, actual[i].Values);
@@ -43,20 +43,20 @@ namespace Wororo.Utilities.UnitTests
         [Test]
         public void TestCreateSampleExcelFileFromDictionary()
         {
-            var input = new string[]
+            var input = new[]
             {
                 "A,B,C,D",
                 "1,2,3,4",
                 "5,6,7,8",
                 "1,2,3,4"
             };
-            ExcelSerialization.CSVToExcel(input, "test.xlsx", true);
+            ExcelSerialization.CSVToExcel(input, "test.xlsx");
         }
 
         [Test]
         public void TestCreateSampleExcelFileFromTwoSheetModel()
         {
-            var input = new string[]
+            var input = new[]
             {
                 "A,B,C,D",
                 "1,2,3,4",
@@ -65,8 +65,8 @@ namespace Wororo.Utilities.UnitTests
             };
             var excelBook = new ExportBook("testModel.xlsx");
 
-            var sheet1 = new ExportSheet("Sheet1", new[] {"A", "B", "C", "D"});
-            sheet1.AddRow(new []{"1", "2", "3", "4"});
+            var sheet1 = new ExportSheet("Sheet1", new[] { "A", "B", "C", "D" });
+            sheet1.AddRow(new[] { "1", "2", "3", "4" });
             sheet1.AddRow(new[] { "5", "6", "7", "8" });
             sheet1.AddRow(new[] { "1", "2", "3", "4" });
             excelBook.Sheets.Add(sheet1);

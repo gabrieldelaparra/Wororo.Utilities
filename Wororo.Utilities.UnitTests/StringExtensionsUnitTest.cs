@@ -7,7 +7,8 @@ namespace Wororo.Utilities.UnitTests
     public class StringExtensionsUnitTest
     {
         [Test]
-        public void TestIsEmpty() {
+        public void TestIsEmpty()
+        {
             string nullString = null;
             const string blankString = "";
             const string spaceString = " ";
@@ -22,7 +23,8 @@ namespace Wororo.Utilities.UnitTests
         }
 
         [Test]
-        public void TestRemove2PlusSpace() {
+        public void TestRemove2PlusSpace()
+        {
             const string spaceString = " ";
             const string singleLetter = "a";
             const string doubleSpaceStringStart = "  hello world";
@@ -50,7 +52,8 @@ namespace Wororo.Utilities.UnitTests
         }
 
         [Test]
-        public void TestRemoveSymbols() {
+        public void TestRemoveSymbols()
+        {
             const string helloWorld = "hello world";
 
             var withSymbols1 = $".-_!+*ç)(/%(&=!è$ä^'§<>{helloWorld}.-_!+*ç)(/%(&=!è$ä^'§<>";
@@ -60,7 +63,8 @@ namespace Wororo.Utilities.UnitTests
         }
 
         [Test]
-        public void TestTabToSpaces() {
+        public void TestTabToSpaces()
+        {
             const string helloTabWorld = "hello\tworld";
             const string helloTabTabWorld = "hello\t\tworld";
 
@@ -69,7 +73,8 @@ namespace Wororo.Utilities.UnitTests
         }
 
         [Test]
-        public void TestToDigitsOnly() {
+        public void TestToDigitsOnly()
+        {
             const string string1 = "hello 3 world";
             const string string2 = "hello 34 world 45";
             const string string3 = "hello -34 world .45";
@@ -80,7 +85,8 @@ namespace Wororo.Utilities.UnitTests
         }
 
         [Test]
-        public void TestToDouble() {
+        public void TestToDouble()
+        {
             const string string1 = "3";
             const string string2 = "3445";
             const string string3 = "-34.45";
@@ -91,7 +97,8 @@ namespace Wororo.Utilities.UnitTests
         }
 
         [Test]
-        public void TestToInt() {
+        public void TestToInt()
+        {
             const string string1 = "3";
             const string string2 = "3445";
             const string string3 = "-34.45";
@@ -108,7 +115,8 @@ namespace Wororo.Utilities.UnitTests
         }
 
         [Test]
-        public void TestToLetters() {
+        public void TestToLetters()
+        {
             const string string1 = "hello 3 World";
             const string string2 = "hello 34 World 45";
             const string string3 = "hello -34 World .45";
@@ -143,7 +151,8 @@ namespace Wororo.Utilities.UnitTests
         }
 
         [Test]
-        public void TestToNormalized() {
+        public void TestToNormalized()
+        {
             const string string1 = "hello World á é í ó ú è à é ö ä ü ñ";
 
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
@@ -151,7 +160,8 @@ namespace Wororo.Utilities.UnitTests
         }
 
         [Test]
-        public void TestToSentenceAndTitleCase() {
+        public void TestToSentenceAndTitleCase()
+        {
             const string lowerCase = "this is a lower case sentence";
             const string sentenceCase = "This is a lower case sentence";
             const string titleCase = "This Is A Lower Case Sentence";
@@ -160,7 +170,8 @@ namespace Wororo.Utilities.UnitTests
         }
 
         [Test]
-        public void TestToSingleLineText() {
+        public void TestToSingleLineText()
+        {
             const string string1 = "line1\nline2";
             const string string2 = "line1\r\nline2";
             const string string3 = "line1\n\rline2";

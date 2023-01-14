@@ -7,7 +7,8 @@ namespace Wororo.Utilities.UnitTests
     public class ValueExtensionsTests
     {
         [Test]
-        public void TestBoolToInt() {
+        public void TestBoolToInt()
+        {
             const bool bTrue = true;
             const bool bFalse = false;
 
@@ -16,7 +17,8 @@ namespace Wororo.Utilities.UnitTests
         }
 
         [Test]
-        public void TestBoolToOneZeroString() {
+        public void TestBoolToOneZeroString()
+        {
             const bool bTrue = true;
             const bool bFalse = false;
 
@@ -25,7 +27,8 @@ namespace Wororo.Utilities.UnitTests
         }
 
         [Test]
-        public void TestIntObjectArrayToDoubleEnumerable() {
+        public void TestIntObjectArrayToDoubleEnumerable()
+        {
             var expected1 = new List<double> { 1, 0, 2, 3, 4 };
             var expected2 = new List<double> { 1.2, -0.4 };
 
@@ -53,7 +56,8 @@ namespace Wororo.Utilities.UnitTests
         }
 
         [Test]
-        public void TestIntObjectArrayToIntEnumerable() {
+        public void TestIntObjectArrayToIntEnumerable()
+        {
             var expected = new List<int> { 1, 2, 3, 4 };
 
             var input1 = new object[] { null, 1, 0, 2, 3, 4 };
@@ -75,7 +79,8 @@ namespace Wororo.Utilities.UnitTests
         }
 
         [Test]
-        public void TestIntObjectArrayToStringEnumerable() {
+        public void TestIntObjectArrayToStringEnumerable()
+        {
             var expected = new List<string> { "1", "2", "3", "4" };
 
             var input1 = new object[] { null, "1", "2", "3", "4" };
@@ -97,7 +102,8 @@ namespace Wororo.Utilities.UnitTests
         }
 
         [Test]
-        public void TestIntToBool() {
+        public void TestIntToBool()
+        {
             const int i1 = 0;
             const int i2 = -21;
             const int i3 = 1;
@@ -110,7 +116,8 @@ namespace Wororo.Utilities.UnitTests
         }
 
         [Test]
-        public void TestIsEvenIsOdd() {
+        public void TestIsEvenIsOdd()
+        {
             const int i1 = 0;
             const int i2 = -21;
             const int i3 = 1;
@@ -131,7 +138,8 @@ namespace Wororo.Utilities.UnitTests
         }
 
         [Test]
-        public void TestStringToBool() {
+        public void TestStringToBool()
+        {
             const string i1 = "0";
             const string i2 = "-21";
             const string i3 = "1";
@@ -155,77 +163,88 @@ namespace Wororo.Utilities.UnitTests
         }
 
         [Test]
-        public void TestToDoubleMix() {
+        public void TestToDoubleMix()
+        {
             const string sample = "a1a1";
             const double expected = 11;
             Assert.AreEqual(expected, sample.ToDouble());
         }
 
         [Test]
-        public void TestToDoubleNegativeExponential() {
+        public void TestToDoubleNegativeExponential()
+        {
             const string sample = "1234E-05";
             const double expected = 1234E-05;
             Assert.AreEqual(expected, sample.ToDouble());
         }
 
         [Test]
-        public void TestToDoubleNegativeNumbers() {
+        public void TestToDoubleNegativeNumbers()
+        {
             const string sample = "-1234";
             const double expected = -1234;
             Assert.AreEqual(expected, sample.ToDouble());
         }
 
         [Test]
-        public void TestToDoubleOnlyLetters() {
+        public void TestToDoubleOnlyLetters()
+        {
             const string sample = "abcs";
             const double expected = 0;
             Assert.AreEqual(expected, sample.ToDouble());
         }
 
         [Test]
-        public void TestToDoubleOnlyNumbers() {
+        public void TestToDoubleOnlyNumbers()
+        {
             const string sample = "1234";
             const double expected = 1234;
             Assert.AreEqual(expected, sample.ToDouble());
         }
 
         [Test]
-        public void TestToDoublePositiveExponential() {
+        public void TestToDoublePositiveExponential()
+        {
             const string sample = "1234E05";
             const double expected = 1234E05;
             Assert.AreEqual(expected, sample.ToDouble());
         }
 
         [Test]
-        public void TestToIntMix() {
+        public void TestToIntMix()
+        {
             const string sample = "a1a1";
             const int expected = 11;
             Assert.AreEqual(expected, sample.ToInt());
         }
 
         [Test]
-        public void TestToIntNegativeNumbers() {
+        public void TestToIntNegativeNumbers()
+        {
             const string sample = "-1234";
             const int expected = -1234;
             Assert.AreEqual(expected, sample.ToInt());
         }
 
         [Test]
-        public void TestToIntOnlyLetters() {
+        public void TestToIntOnlyLetters()
+        {
             const string sample = "abcs";
             const int expected = 0;
             Assert.AreEqual(expected, sample.ToInt());
         }
 
         [Test]
-        public void TestToIntOnlyNumbers() {
+        public void TestToIntOnlyNumbers()
+        {
             const string sample = "1234";
             const int expected = 1234;
             Assert.AreEqual(expected, sample.ToInt());
         }
 
         [Test]
-        public void TestToThreeDecimals() {
+        public void TestToThreeDecimals()
+        {
             const double d1 = 0.1234;
             const double d2 = 1234.45678;
             const double d3 = 3.2;
@@ -240,21 +259,24 @@ namespace Wororo.Utilities.UnitTests
         }
 
         [Test]
-        public void TestToThreeDecimalsLarger() {
+        public void TestToThreeDecimalsLarger()
+        {
             const double dec = 1.23456789;
             const double expected = 1.234;
             Assert.AreEqual(expected, dec.ToThreeDecimals());
         }
 
         [Test]
-        public void TestToThreeDecimalsShorter() {
+        public void TestToThreeDecimalsShorter()
+        {
             const double dec = 1.2;
             const double expected = 1.200;
             Assert.AreEqual(expected, dec.ToThreeDecimals());
         }
 
         [Test]
-        public void TestToThreeDecimalsZero() {
+        public void TestToThreeDecimalsZero()
+        {
             const double dec = 0.0;
             const double expected = 0.000;
             Assert.AreEqual(expected, dec.ToThreeDecimals());
