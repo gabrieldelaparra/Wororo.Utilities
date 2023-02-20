@@ -41,8 +41,9 @@ namespace Wororo.Utilities.UnitTests
             const string dirPath = "TestGetOrCreate/";
             var filePath = $"{dirPath}file.ext";
 
-            if (Directory.Exists(dirPath))
+            if (Directory.Exists(dirPath)) {
                 Directory.Delete(dirPath);
+            }
 
             Assert.False(Directory.Exists(dirPath));
 
@@ -50,8 +51,9 @@ namespace Wororo.Utilities.UnitTests
 
             Assert.True(Directory.Exists(dirPath));
 
-            if (Directory.Exists(dirPath))
+            if (Directory.Exists(dirPath)) {
                 Directory.Delete(dirPath);
+            }
         }
 
         [Test]
@@ -93,8 +95,7 @@ namespace Wororo.Utilities.UnitTests
             path.DeleteIfExists();
             Assert.False(File.Exists(path));
 
-            using (var file = File.Create(path))
-            {
+            using (var file = File.Create(path)) {
             }
 
             Assert.True(File.Exists(path));

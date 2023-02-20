@@ -155,8 +155,9 @@ namespace Wororo.Utilities.UnitTests
         {
             const string string1 = "hello World á é í ó ú è à é ö ä ü ñ";
 
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows)) {
                 Assert.AreEqual("hello World a e i o u e a e o a u n", string1.ToNormalized());
+            }
         }
 
         [Test]
