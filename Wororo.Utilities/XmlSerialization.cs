@@ -6,8 +6,17 @@ using System.Xml.Serialization;
 
 namespace Wororo.Utilities
 {
+    /// <summary>
+    ///     A static class that provides methods for serializing and deserializing objects to and from XML.
+    /// </summary>
     public static class XmlSerialization
     {
+        /// <summary>
+        ///     Deserializes an XML file to an object of type T.
+        /// </summary>
+        /// <typeparam name="T">The type of the object to deserialize.</typeparam>
+        /// <param name="inputXmlFilename">The path and filename of the XML file to deserialize.</param>
+        /// <returns>The deserialized object of type T.</returns>
         public static T DeserializeXml<T>(string inputXmlFilename)
         {
             if (!File.Exists(inputXmlFilename)) {
@@ -20,6 +29,13 @@ namespace Wororo.Utilities
             return (T)s.Deserialize(stream);
         }
 
+        /// <summary>
+        ///     Serializes an object to an XML file.
+        /// </summary>
+        /// <param name="objectToSerialize">The object to serialize.</param>
+        /// <param name="outputXmlFilename">The path and filename of the XML file to create.</param>
+        /// <param name="serializeEmptyElements">A boolean indicating whether to serialize empty XML elements.</param>
+        /// <param name="serializeDefaultValues">A boolean indicating whether to serialize default values for properties.</param>
         public static void SerializeXml(this object objectToSerialize, string outputXmlFilename, bool serializeEmptyElements = false, bool serializeDefaultValues = false)
         {
             outputXmlFilename.CreatePathIfNotExists();

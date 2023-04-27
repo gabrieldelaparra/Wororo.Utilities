@@ -1,7 +1,16 @@
-﻿namespace Wororo.Utilities
+﻿using System;
+
+namespace Wororo.Utilities
 {
     public static class RuleManager
     {
+        ///// <summary>
+        /////     Gets the rules from a specified file and deserializes them to the specified type.
+        ///// </summary>
+        ///// <param name="rulesFilename">The name of the rules file.</param>
+        ///// <param name="expectedType">The expected type of the deserialized rules.</param>
+        ///// <param name="callingNamespace">The namespace of the calling class.</param>
+        ///// <returns>The deserialized rules.</returns>
         //public static object GetRules(string rulesFilename, Type expectedType, string callingNamespace)
         //{
         //    //Template rules to be present in its template folder:

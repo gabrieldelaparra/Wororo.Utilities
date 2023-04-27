@@ -3,7 +3,6 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-
 using Microsoft.CodeAnalysis.CSharp;
 
 namespace Wororo.Utilities
@@ -40,15 +39,19 @@ namespace Wororo.Utilities
 
         public static string Remove2PlusSpaces(this string text)
         {
-            if (string.IsNullOrWhiteSpace(text))
+            if (string.IsNullOrWhiteSpace(text)) {
                 return string.Empty;
+            }
+
             return RemoveSpacesRegex.Replace(text, Space).Trim();
         }
 
         public static string RemoveSymbols(this string text)
         {
-            if (string.IsNullOrWhiteSpace(text))
+            if (string.IsNullOrWhiteSpace(text)) {
                 return string.Empty;
+            }
+
             return RemoveSymbolsRegex.Replace(text, string.Empty).Remove2PlusSpaces();
         }
 
@@ -64,23 +67,29 @@ namespace Wororo.Utilities
 
         public static string ToDigitsOnly(this string input)
         {
-            if (string.IsNullOrWhiteSpace(input))
+            if (string.IsNullOrWhiteSpace(input)) {
                 return string.Empty;
+            }
+
             return ToDigitsOnlyRegex.Replace(input, string.Empty);
         }
 
         public static double ToDouble(this string input)
         {
-            if (string.IsNullOrWhiteSpace(input))
+            if (string.IsNullOrWhiteSpace(input)) {
                 return 0;
+            }
+
             var value = ToDoubleRegex.Replace(input, string.Empty);
             return value.IsEmpty() ? 0 : double.Parse(value);
         }
 
         public static int ToInt(this string input)
         {
-            if (string.IsNullOrWhiteSpace(input))
+            if (string.IsNullOrWhiteSpace(input)) {
                 return 0;
+            }
+
             var value = ToIntRegex.Replace(input, string.Empty);
             return value.IsEmpty() ? 0 : (int)double.Parse(value);
         }
