@@ -1,35 +1,29 @@
 name: Publish to Nuget
 on:
-  release:
-    types: [published]
+  push:
+    branches:
+      - master
     
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
+    name: build, pack & publish
     steps:
-    - uses: actions/checkout@v2
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1
+    - uses: actions/checkout@v4    
+    
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: 3.1.301
-
-    - name: Build
-      run: dotnet build -c Release -p:Version=${{ github.event.release.tag_name }}
-      working-directory: ./Wororo.Utilities/
-
-    - name: Test
-      run: dotnet test
-
-    - name: Create NuGet Package
-      run: dotnet pack -c Release -p:PackageVersion=${{ github.event.release.tag_name }} -p:PackageReleaseNotes="See https://github.com/gabrieldelaparra/Wororo.Utilities/releases/tag/${{ github.event.release.tag_name }}"
-      working-directory: ./Wororo.Utilities/
-    
-    - name: Archive NuGet Package
-      uses: actions/upload-artifact@v1
+        dotnet-version: 6.0.x
+        
+    - name: Publish NuGet
+      # You may pin to the exact commit or the version.
+      # uses: brandedoutcast/publish-nuget@c12b8546b67672ee38ac87bea491ac94a587f7cc
+      uses: brandedoutcast/publish-nuget@v2.5.5
       with:
-        name: Wororo.Utilities
-        path: ./Wororo.Utilities/bin/Release/Wororo.Utilities.${{ github.event.release.tag_name }}.nupkg
-    
-    - name: Publish Nuget Package
-      run: dotnet nuget push ./Wororo.Utilities/bin/Release/Wororo.Utilities.${{ github.event.release.tag_name }}.nupkg --api-key ${{ SECRETS.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
-    
+        # Filepath of the project to be packaged, relative to root of repository
+        PROJECT_FILE_PATH: ./Wororo.Utilities/Wororo.Utilities.csproj
+        # NuGet package id, used for version detection & defaults to project name
+        PACKAGE_NAME: Wororo.Utilities
+        # API key to authenticate with NuGet server
+        # NUGET_KEY: # optional
