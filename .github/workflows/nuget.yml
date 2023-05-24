@@ -7,7 +7,7 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
-    name: build, pack & publish
+    name: Build, test, pack & publish
     steps:
     - uses: actions/checkout@v3    
     
@@ -15,8 +15,16 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 6.0.x
+        
+    - name: Restore dependencies
+      run: dotnet restore
     - name: Build
-      run: dotnet build -c Release ./Wororo.Utilities/Wororo.Utilities.csproj
+      run: dotnet build --no-restore
+    - name: Test
+      run: dotnet test --no-build --verbosity normal
+      
+    - name: Build
+      run: dotnet build  --no-restore -c Release ./Wororo.Utilities/Wororo.Utilities.csproj
     - name: Pack
       run: dotnet pack  --no-build -c Release ./Wororo.Utilities/Wororo.Utilities.csproj -o .
     - name: Push Nuget
