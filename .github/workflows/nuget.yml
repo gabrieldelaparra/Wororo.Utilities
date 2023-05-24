@@ -26,4 +26,4 @@ jobs:
         # NuGet package id, used for version detection & defaults to project name
         PACKAGE_NAME: Wororo.Utilities
         # API key to authenticate with NuGet server
-        # NUGET_KEY: # optional
+        NUGET_KEY: ${{secrets.NUGET_API_KEY}}
