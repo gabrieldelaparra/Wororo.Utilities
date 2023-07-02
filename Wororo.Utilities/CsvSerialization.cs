@@ -1,6 +1,4 @@
-﻿using System.IO;
-
-namespace Wororo.Utilities
+﻿namespace Wororo.Utilities
 {
     /// <summary>
     ///     Provides methods for serializing and deserializing CSV files.

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Wororo.Utilities
+﻿namespace Wororo.Utilities
 {
     public static class RuleManager
     {
