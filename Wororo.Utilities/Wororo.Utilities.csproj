@@ -2,23 +2,20 @@
 
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
-        <LangVersion>8.0</LangVersion>
+        <LangVersion>latest</LangVersion>
         <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
         <Description>A set of utilities for my personal projects.</Description>
         <RepositoryUrl>https://github.com/gabrieldelaparra/Wororo.Utilities</RepositoryUrl>
         <RepositoryType>Git</RepositoryType>
         <PackageTags>Utilities</PackageTags>
-        <Copyright>2023, Gabriel De La Parra</Copyright>
+        <Copyright>2024, Gabriel De La Parra</Copyright>
         <Authors>Gabriel De La Parra</Authors>
         <Company>Wororo</Company>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
-        <NeutralLanguage>en</NeutralLanguage>
-        <SatelliteResourceLanguages>en-US;en</SatelliteResourceLanguages>
         <PackageProjectUrl>https://www.nuget.org/packages/Wororo.Utilities/</PackageProjectUrl>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <Title>Wororo Utilities</Title>
-        <Version>1.2.1.14</Version>
-        <Platforms>AnyCPU;x64</Platforms>
+        <Version>1.2.15</Version>
     </PropertyGroup>
 
     <ItemGroup>
@@ -29,10 +26,10 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.6.0" />
+        <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.9.2" />
         <PackageReference Include="MiniExcel" Version="0.19.1" />
         <PackageReference Include="morelinq" Version="3.4.2" />
-        <PackageReference Include="NaturalSort.Extension" Version="4.1.0" />
+        <PackageReference Include="NaturalSort.Extension" Version="4.3.0" />
         <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     </ItemGroup>
 
