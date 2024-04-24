@@ -27,8 +27,8 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.9.2" />
-        <PackageReference Include="MiniExcel" Version="0.19.1" />
-        <PackageReference Include="morelinq" Version="3.4.2" />
+        <PackageReference Include="MiniExcel" Version="0.21.5" />
+        <PackageReference Include="morelinq" Version="4.2.0" />
         <PackageReference Include="NaturalSort.Extension" Version="4.3.0" />
         <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     </ItemGroup>
