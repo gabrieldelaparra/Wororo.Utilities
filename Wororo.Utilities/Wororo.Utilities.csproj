@@ -15,7 +15,8 @@
         <PackageProjectUrl>https://www.nuget.org/packages/Wororo.Utilities/</PackageProjectUrl>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <Title>Wororo Utilities</Title>
-        <Version>1.2.15</Version>
+        <Version>1.2.16</Version>
+        <Nullable>enable</Nullable>
     </PropertyGroup>
 
     <ItemGroup>
