@@ -54,7 +54,7 @@ public static class ValueExtensions
 
     public static int ToBoolInt(this bool boolean)
     {
-        return Convert.ToInt32(boolean);
+        return boolean ? 1 : 0;
     }
 
     public static IEnumerable<double> ToDoubleEnumerable(this object array)
