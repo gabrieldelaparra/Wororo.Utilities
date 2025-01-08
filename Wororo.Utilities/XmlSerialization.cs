@@ -17,7 +17,7 @@ public static class XmlSerialization
     /// <typeparam name="T">The type of the object to deserialize.</typeparam>
     /// <param name="inputXmlFilename">The path and filename of the XML file to deserialize.</param>
     /// <returns>The deserialized object of type T.</returns>
-    public static T DeserializeXml<T>(string inputXmlFilename)
+    public static T? DeserializeXml<T>(string inputXmlFilename)
     {
         if (!File.Exists(inputXmlFilename)) {
             return default;

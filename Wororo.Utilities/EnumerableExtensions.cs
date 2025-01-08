@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using MoreLinq;
+
 using NaturalSort.Extension;
 
 namespace Wororo.Utilities;
@@ -28,9 +30,9 @@ public static class EnumerableExtensions
     }
 
     public static IEnumerable<TNode> Flatten<TNode>(
-        this IEnumerable<TNode> nodes,
-        Func<TNode, bool> filterBy = null,
-        Func<TNode, IEnumerable<TNode>> selectChildren = null
+        this IEnumerable<TNode>? nodes,
+        Func<TNode, bool>? filterBy = null,
+        Func<TNode, IEnumerable<TNode>>? selectChildren = null
     )
     {
         if (nodes == null) {
@@ -41,7 +43,7 @@ public static class EnumerableExtensions
             nodes = nodes.Where(filterBy);
         }
 
-        var inCollection = nodes.ToArray();
+        //var inCollection = nodes.ToArray();
 
         foreach (var node in nodes) {
             //if (inCollection.Contains(node)) 
