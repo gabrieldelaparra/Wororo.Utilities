@@ -36,10 +36,10 @@ public static class DictionaryExtensions
     /// <param name="values">The collection of values to add to the key.</param>
     public static void AddSafe<T1, T2>(this Dictionary<T1, List<T2>> dictionary, T1 key, IEnumerable<T2> values)
     {
-        if (!values.Any()) return;
-
         if (dictionary.TryGetValue(key, out var list)) {
-            dictionary[key] = list.Union(values).ToList();
+            foreach (var value in values) {
+                list.Add(value);
+            }
         }
         else {
             dictionary.Add(key, values.Distinct().ToList());
@@ -56,8 +56,6 @@ public static class DictionaryExtensions
     /// <param name="values">The collection of values to add to the key.</param>
     public static void AddSafe<T1, T2>(this IDictionary<T1, HashSet<T2>> dictionary, T1 key, IEnumerable<T2> values)
     {
-        if (!values.Any()) return;
-
         if (dictionary.TryGetValue(key, out var hashSet)) {
             foreach (var value in values) {
                 hashSet.Add(value);
