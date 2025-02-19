@@ -12,6 +12,15 @@ public static class ValueExtensions
     //    return Math.Abs(double1).Equals(Math.Abs(double2));
     //}
 
+    public static int Round(this double value)
+    {
+        return (int)Math.Round(value, 3, MidpointRounding.AwayFromZero);
+    }
+    public static int ToInt(this double value)
+    {
+        return (int)value;
+    }
+
     public static bool Equals3DigitPrecision(this double left, double right)
     {
         return left.ToThreeDecimals().Equals(right.ToThreeDecimals());

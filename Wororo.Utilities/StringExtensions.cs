@@ -111,11 +111,6 @@ public static class StringExtensions
         return value.IsEmpty() ? 0 : (int)double.Parse(value);
     }
 
-    public static int ToInt(this double value)
-    {
-        return (int)value;
-    }
-
     public static string ToLetters(this string text)
     {
         return ToLettersOnlyRegex.Replace(text, string.Empty);
