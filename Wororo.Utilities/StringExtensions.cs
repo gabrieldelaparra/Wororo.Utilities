@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Microsoft.CodeAnalysis.CSharp;
+
+using System;
 using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using Microsoft.CodeAnalysis.CSharp;
 
 namespace Wororo.Utilities;
 

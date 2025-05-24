@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-using MoreLinq;
+﻿using MoreLinq;
 
 using NaturalSort.Extension;
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Wororo.Utilities;
 
