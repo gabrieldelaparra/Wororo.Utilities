@@ -126,7 +126,7 @@ public static class FileExtensions
     {
         using var fileStream = File.OpenRead(filename);
 
-        foreach (var line in ReadLines(fileStream)) {
+        foreach (var line in fileStream.ReadLines()) {
             yield return line;
         }
     }

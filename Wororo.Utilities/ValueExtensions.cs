@@ -16,6 +16,7 @@ public static class ValueExtensions
     {
         return (int)Math.Round(value, 3, MidpointRounding.AwayFromZero);
     }
+
     public static int ToInt(this double value)
     {
         return (int)value;
